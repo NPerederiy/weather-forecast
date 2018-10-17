@@ -1,23 +1,38 @@
+var selected = "";
+
 // showing area description by hover
 $('.area').hover(function() { 
     console.log($(this));
-	$(this).css({stroke-width: 3});
+    if ($(this).attr("id") != selected) {
+        $(this).css({
+            fill: '#1a90ff',
+            strokeWidth: '3px'
+        });
+    }
     //$('#description').html($(this).attr('title'));
     //$('#description').fadeIn();
 },
 function(){
     //$('#description').fadeOut();
+    });
+
+$('.area').mouseout(function () {
+    if ($(this).attr("id") != selected) {
+        $(this).css({
+            fill: '#0069cc',
+            strokeWidth: '1px'
+        });
+    }
 });
 // changing the color of the area by click
 $('.area').click(function() {      
-    $('.area').animate(
-	{
-		fill: '#0069cc'
-	}, 500, function () {$('.area').css({fill: '#0069cc'})});
-	//css({ fill: '#0069cc' });
-    $(this).animate(
-	{
-		fill: '#8ecaff'
-	}, 500, function () {$('.area').css({fill: '#8ecaff'})});
-	//css({ fill: '#8ecaff' });
+    $('.area').css({
+        fill: '#0069cc',
+        strokeWidth: '1px'
+    });
+    $(this).css({
+        fill: '#8ecaff',
+        strokeWidth: '3px'
+    });
+    selected = $(this).attr("id");
 });

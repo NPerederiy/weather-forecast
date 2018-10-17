@@ -24,9 +24,10 @@ div#description{
 svg#map{
     margin-left: 18%;
     width: 80%;
-    height: 60%;
+    height: 70%;
 }
 path.area{
     stroke: #ffffff;
+    stroke-width: 1px;
     fill: #0069cc;
 }
