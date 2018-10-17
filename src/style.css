@@ -3,9 +3,14 @@ body{
     color: #ffffff;
 }
 div#main{
-    margin: 5% 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 5%;
 }
-div#footer{
+footer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     text-align: right; 
     font-size: 10pt;
     font-family: 'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif;
@@ -21,12 +26,47 @@ div#description{
     left: 50px;
     bottom: calc(50%-200px);
 }
-svg#map{
-    margin-left: 18%;
-    width: 80%;
-    height: 60%;
+svg#map {
+    width: 620px;
+    height: 420px;
+    margin-top: 10%;
+    margin-right: 20%;
 }
+
+@media screen and (max-height: 360px) {
+    svg#map {
+        transform: scale(0.7);
+        margin-top: 10%;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    svg#map {
+        transform: scale(0.9);
+        margin-top: 10%;
+    }
+}
+
+@media screen and (max-height: 640px) {
+    svg#map {
+        transform: scale(1.1);
+    }
+}
+
+@media screen and (max-height: 780px) {
+    svg#map {
+        transform: scale(1.2);
+    }
+}
+
+@media screen and (max-height: 1080px) {
+    svg#map {
+        transform: scale(1.4);
+    }
+}
+
 path.area{
     stroke: #ffffff;
+    stroke-width: 1px;
     fill: #0069cc;
 }
