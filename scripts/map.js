@@ -1,8 +1,7 @@
 var selected = "";
 
 // showing area description by hover
-$('.area').hover(function() { 
-    console.log($(this));
+$('.area').hover(function() {
     if ($(this).attr("id") != selected) {
         $(this).css({
             fill: '#1a90ff'
