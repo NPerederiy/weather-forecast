@@ -1,0 +1,32 @@
+body{
+    background-color: #003366;
+    color: #ffffff;
+}
+div#main{
+    margin: 5% 2%;
+}
+div#footer{
+    text-align: right; 
+    font-size: 10pt;
+    font-family: 'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif;
+}
+div#description{
+    display: none;
+    position: absolute;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 0 32px 10px;
+    left: 50px;
+    bottom: calc(50%-200px);
+}
+svg#map{
+    margin-left: 18%;
+    width: 80%;
+    height: 60%;
+}
+path.area{
+    stroke: #ffffff;
+    fill: #0069cc;
+}
