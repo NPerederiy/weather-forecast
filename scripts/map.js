@@ -5,8 +5,7 @@ $('.area').hover(function() {
     console.log($(this));
     if ($(this).attr("id") != selected) {
         $(this).css({
-            fill: '#1a90ff',
-            strokeWidth: '3px'
+            fill: '#1a90ff'
         });
     }
     //$('#description').html($(this).attr('title'));
@@ -19,20 +18,17 @@ function(){
 $('.area').mouseout(function () {
     if ($(this).attr("id") != selected) {
         $(this).css({
-            fill: '#0069cc',
-            strokeWidth: '1px'
+            fill: '#0069cc'
         });
     }
 });
 // changing the color of the area by click
 $('.area').click(function() {      
     $('.area').css({
-        fill: '#0069cc',
-        strokeWidth: '1px'
+        fill: '#0069cc'
     });
     $(this).css({
-        fill: '#8ecaff',
-        strokeWidth: '3px'
+        fill: '#8ecaff'
     });
     selected = $(this).attr("id");
 });
