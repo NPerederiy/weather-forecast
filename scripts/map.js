@@ -29,5 +29,6 @@ $('.area').click(function() {
     $(this).css({
         fill: '#8ecaff'
     });
+    $('#district').html($(this).parent().attr("xlink:title"));    
     selected = $(this).attr("id");
 });
