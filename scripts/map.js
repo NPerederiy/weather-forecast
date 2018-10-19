@@ -32,3 +32,12 @@ $('.area').click(function() {
     $('#district').html($(this).parent().attr("xlink:title"));    
     selected = $(this).attr("id");
 });
+
+function ScaleMap() {
+    var oH = document.documentElement.clientHeight;
+    oH -= oH * 0.1;
+
+    var scale = oH / 420;
+    console.log("scale = " + scale);
+    $('#map').css({ transform: `scale(${scale})` });
+}
