@@ -31,4 +31,6 @@ $('.area').click(function() {
     });
     $('#district').html($(this).parent().attr("xlink:title"));    
     selected = $(this).attr("id");
+
+    var weather = getWeather();
 });
