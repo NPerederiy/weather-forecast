@@ -53,6 +53,8 @@ $('.area').click(function () {
         $('#district').html($(this).parent().attr("xlink:title"));
         selected = $(this).attr("id");
 
+        // var weather = getWeather();
+      
         $('#tooltip').css({visibility: 'visible'});
 
         var w = document.documentElement.clientWidth;
