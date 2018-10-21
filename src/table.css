@@ -8,6 +8,7 @@
 }
 
 table {
+    visibility: hidden;
     border-radius: 10%;
     border-collapse: collapse;
     width: 200px;
