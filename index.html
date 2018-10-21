@@ -93,19 +93,24 @@
                 </a>
             </svg>
             <div id="description"></div>
-            <table class="detail">
+            <table id="tooltip" class="detail">
                 <tbody>
                     <tr>
-                        <th id="district" colspan="2">
-                            Middle of Nowhere
+                        <th colspan="2">
+                            <div id="district">
+                                Kyiv
+                            </div>
                         </th>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <div class="weather_data">
-                                <img id="weather_icon">
-                                <div id="weather">
-                                    В Аду замерзают черти.
+                                <img id="weather_icon" src="src\Weather\Clouds.svg">
+                                <div>
+                                    <div id="temperature">+12 <sup>o</sup>С</div>
+                                    <div id="weather">
+                                        Cloudy
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -113,26 +118,26 @@
                     </tr>
                     <tr>
                         <td class="icon">
-                            <img id="wind_icon">
+                            <img id="wind_icon" src="src\Wind.svg">
                         </td>
                         <td id="wind" class="data">
-                            Крыши уносит на север.
+                            NE 3 m/s
                         </td>
                     </tr>
                     <tr>
                         <td class="icon">
-                            <img id="pressure_icon">
+                            <img id="pressure_icon" src="src\Temperature.svg">
                         </td>
                         <td id="pressure" class="data">
-                            Человечество вымерло.
+                            752 mmHg
                         </td>
                     </tr>
                     <tr>
                         <td class="icon">
-                            <img id="humid_icon">
+                            <img id="humid_icon" src="src\Humidity.svg">
                         </td>
                         <td id="humid" class="data">
-                            Русские жарят шашлыки.
+                            72%
                         </td>
                     </tr>
                 </tbody>
