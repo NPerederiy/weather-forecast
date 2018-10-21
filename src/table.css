@@ -1,11 +1,21 @@
+@font-face {
+    font-family: HP Simplified;
+    src: url('HPSimplifiedLight.ttf') format('truetype'), 
+        url('hpSimplifiedLight.woff2') format('woff2'), 
+        url('hpSimplifiedLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 table {
-    border: 2px solid white;
+    visibility: hidden;
+    border-radius: 10%;
     border-collapse: collapse;
-    width: 300px;
-    height: auto;
+    width: 200px;
+    height: 240px;
     color: white;
-    font-family: 'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif, 'Times New Roman', Times, serif;
-    background-image: linear-gradient(to right, #0069cc,#0069cc33);
+    font-family: /*'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif, 'Times New Roman', Times, serif,*/ HP Simplified;
+    background-color: rgba(128, 183, 235, 0.75);
 }
 table.detail {
     position: absolute;
@@ -14,16 +24,21 @@ table.detail {
 }
 th {
     height: 36px;
+    padding-top: 5px;
+}
+th div {
+    margin-left: 7%;
+    width: 86%;
+    height: inherit;
+    font-size: 24px;
     border-bottom: 1px solid white;
-    color: #002344;
-    font-size: 22px;
-    text-shadow: 1px 1px 1px #1a90ff;
 }
 tr {
-    max-height: 40px;
-    border-bottom: 1px solid white;
-    /*background-image: linear-gradient(to right, #1a90ff, #1a90ff33);*/
     text-shadow: 1px 1px 1px #002344;
+}
+td {
+    padding-left: 5%;
+    padding-right: 10px;
 }
 #weather_icon {
     height: 80px;
@@ -40,10 +55,19 @@ tr {
     display: flex;
     flex-direction: row;
 }
-#weather {
-    font-size:18px;
+.data {
+    font-size: 16px;
+    transform: translateX(-20px);
+}
+#temperature {
+    font-size: 28px;
     align-self: center;
-    margin-left: 7px;
+    margin-left: 2px;
+}
+#weather {
+    font-size: 24px;
+    align-self: center;
+    margin-left: 5px;
 }
 #district {
     color: white;
