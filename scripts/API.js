@@ -76,7 +76,7 @@ function weatherReport(city_name) {
 
     var latitude, longitude; 
     switch (city_name) {
-        case "'Sevastpol' City":
+        case "Sevastpol' City":
         case 'Crimea':
             latitude = '44.952116';
             longitude = '34.102411';
@@ -179,7 +179,7 @@ function weatherReport(city_name) {
             longitude = '28.6766900';
             break;
         default:
-            alert('Я таких значений не знаю (и тебе не советую)');
+            alert('пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)');
     }
 
     var apiKey = '383d16ca6466f351cb25cf3639e1fa01',
@@ -225,7 +225,7 @@ function weatherReport(city_name) {
 					hourly_day     = days[hourly_date.getDay()],
 					hourly_temp    = forecast.hourly.data[j].temperature;
 
-			// Сonvert degrees to celsius for general forecast report.
+			// пїЅonvert degrees to celsius for general forecast report.
 				hourly_temp = fToC(hourly_temp);
 				hourly_temp = Math.round(hourly_temp);
 
@@ -269,7 +269,7 @@ function weatherReport(city_name) {
 					temp    = Math.round(forecast.hourly.data[i].temperature),
 					tempMax = Math.round(forecast.daily.data[i].temperatureMax);
 
-			// Сonvert degrees to celsius for 24 hour forecast results
+			// пїЅonvert degrees to celsius for 24 hour forecast results
 				temp    = fToC(temp);
 				tempMax = fToC(tempMax);
 				temp = Math.round(temp);

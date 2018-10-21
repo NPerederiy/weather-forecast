@@ -1,2 +1,0 @@
-C:\Users\kobal\Documents\GitHub\weather-forecast\obj\x86\Debug\WF.csprojAssemblyReference.cache
-C:\Users\kobal\Documents\GitHub\weather-forecast\obj\x86\Debug\WF.csproj.CoreCompileInputs.cache
