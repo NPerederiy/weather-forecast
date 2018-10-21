@@ -30,8 +30,14 @@ $('.area').click(function () {
         selected = $(this).attr("id");
 
         // get weather from API
-        console.log(getCoordsById($(this).attr("id")));
-        // var weather = getWeather(getCoordsById($(this).attr("id")));
+        var coords = getCoordsById($(this).attr("id"));
+        var weatherInfo = getWeatherReport(coords.latitude, coords.longitude);
+        if(weatherInfo == null){
+            console.log('data not received!')
+        } else {
+            console.log(weatherInfo);
+            // TODO: Insert data into HTML markup.
+        }
 
         // show tooltip
         $('#tooltip').css({visibility: 'visible'});
@@ -42,18 +48,18 @@ $('.area').click(function () {
         var tH = $('#tooltip')[0].getBoundingClientRect().height;
         var x = $(this)[0].getBoundingClientRect().left + $(this)[0].getBoundingClientRect().width / 2;
         if (x + tW > w) {
-            console.log(`${x} ${x + tW} ${w}`);
+            //console.log(`${x} ${x + tW} ${w}`);
             x = w - tW - 10;
-            console.log(`${x}`);
+            //console.log(`${x}`);
         }
         var y = $(this)[0].getBoundingClientRect().top + $(this)[0].getBoundingClientRect().height / 2;
         if (y + tH > h) {
-            console.log(`${y} ${y + tH} ${h}`);
+            //console.log(`${y} ${y + tH} ${h}`);
             y = h - tH -    10;
-            console.log(`${y}`);
+            //console.log(`${y}`);
         }
         
-        console.log(`x: ${x}; y: ${y}; w: ${w}; h: ${h}`);
+        //console.log(`x: ${x}; y: ${y}; w: ${w}; h: ${h}`);
         $('#tooltip').css({ top: `${y}`, left: `${x}` });
     }
 });
@@ -64,7 +70,7 @@ function ScaleMap() {
     oH -= oH * 0.1;
 
     var scale = oH / 420;
-    console.log("scale = " + scale);
+    //console.log("scale = " + scale);
     $('#map').css({ transform: `scale(${scale})` });
 }
 

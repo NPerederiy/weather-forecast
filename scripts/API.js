@@ -28,7 +28,7 @@ function roundPlus(x, n) { //x - flout number, n - count signs after coma
 // =================================================
 // Weather Reporter
 // =================================================
-function weatherReport(latitude, longitude) {
+function getWeatherReport(latitude, longitude) {
 
     var apiKey = '383d16ca6466f351cb25cf3639e1fa01',
 			url          = 'https://api.darksky.net/forecast/',
@@ -36,10 +36,10 @@ function weatherReport(latitude, longitude) {
 			longi        = longitude,
 			api_call     = url + apiKey + "/" + lati + "," + longi + "?extend=hourly&callback=?";
 
+    var Rez = {};
 	// Call to the DarkSky API to retrieve JSON
     $.getJSON(api_call, function (forecast)
     {
-        var Rez = new Object();
         Rez.temperature = forecast.currently.temperature; //текущая темп.
         Rez.apparentTemperature = forecast.currently.apparentTemperature; //по ощущениям
         Rez.visibility = forecast.currently.visibility; //видимость
@@ -61,14 +61,5 @@ function weatherReport(latitude, longitude) {
         Rez.temp = roundPlus(Rez.temp, 2);
         Rez.apptemp = roundPlus(Rez.apptemp, 2);
     });
+    return Rez;
 }
-
-
-// =================================================
-// Get Weather State Event
-// =================================================
-$('.area').on('click', function () {
-    var latitude = $(this).attr("latitude"); ///!!!
-    var longitude = $(this).attr("longitude"); ///!!!
-    weatherReport(latitude, longitude);
-});
