@@ -1,0 +1,74 @@
+@font-face {
+    font-family: HP Simplified;
+    src: url('HPSimplifiedLight.ttf') format('truetype'), 
+        url('hpSimplifiedLight.woff2') format('woff2'), 
+        url('hpSimplifiedLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+table {
+    visibility: hidden;
+    border-radius: 10%;
+    border-collapse: collapse;
+    width: 200px;
+    height: 240px;
+    color: white;
+    font-family: /*'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif, 'Times New Roman', Times, serif,*/ HP Simplified;
+    background-color: rgba(128, 183, 235, 0.75);
+}
+table.detail {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+th {
+    height: 36px;
+    padding-top: 5px;
+}
+th div {
+    margin-left: 7%;
+    width: 86%;
+    height: inherit;
+    font-size: 24px;
+    border-bottom: 1px solid white;
+}
+tr {
+    text-shadow: 1px 1px 1px #002344;
+}
+td {
+    padding-left: 5%;
+    padding-right: 10px;
+}
+#weather_icon {
+    height: 80px;
+    width: 80px;
+    margin: 0px 5px 0px;
+}
+.icon img {
+    height: 36px;
+    width: 36px;
+    margin: 0px 5px 0px;
+}
+.weather_data {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+}
+.data {
+    font-size: 16px;
+    transform: translateX(-20px);
+}
+#temperature {
+    font-size: 28px;
+    align-self: center;
+    margin-left: 2px;
+}
+#weather {
+    font-size: 24px;
+    align-self: center;
+    margin-left: 5px;
+}
+#district {
+    color: white;
+}
