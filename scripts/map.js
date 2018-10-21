@@ -1,5 +1,25 @@
 var selected = "";
 
+var Weather = {
+    CLOUDY: [-50, -120],
+    SUNNY: [-130, -120],
+    SUNNYWCLOUDS: [-210, -120],
+    MOONWCLOUDS: [-290, -120],
+    SUNNYWRAIN: [-370, -120],
+
+    STORMY: [-50, -210],
+    RAINY: [-130, -210],
+    SNOWY: [-210, -210],
+    WINDY: [-290, -210],
+    MOONWRAIN: [-370, -210],
+
+    SLEET: [-50, -300],
+    FOGGY: [-130, -300],
+    MOON: [-210, -300],
+    WINDWRAIN: [-290, -300],
+    WINDWCLOUDSANDRAIN: [-370, -300]
+};
+
 // showing area description by hover
 $('.area').hover(function() {
     if ($(this).attr("id") != selected) {
