@@ -6,12 +6,10 @@
 // Temperature Converter
 // =================================================
 
-// convert degrees to celsius
-function fToC(fahrenheit) {
-	var fTemp  = fahrenheit,
-			fToCel = (fTemp - 32) * 5 / 9;
-
-	return fToCel;
+// convert fahrenheit to celsius
+function fToC(degrees) {
+    degrees = (degrees - 32) * (5 / 9);
+	return degrees;
 }
 
 // =================================================
@@ -40,8 +38,8 @@ function getWeatherReport(latitude, longitude) {
 	// Call to the DarkSky API to retrieve JSON
     $.getJSON(api_call, function (forecast)
     {
-        Rez.temperature = forecast.currently.temperature; //текущая темп.
-        Rez.apparentTemperature = forecast.currently.apparentTemperature; //по ощущениям
+        Rez.tempFahrenheit = forecast.currently.temperature; //текущая темп.
+        Rez.apparentTempFahrenheit = forecast.currently.apparentTemperature; //по ощущениям
         Rez.visibility = forecast.currently.visibility; //видимость
         Rez.cloudCover = forecast.currently.cloudCover; //облачность
         Rez.dewPoint = forecast.currently.dewPoint; //Точка росы
@@ -54,12 +52,12 @@ function getWeatherReport(latitude, longitude) {
         Rez.timezone = forecast.timezone; //где это
 
         // Сonvert degrees to celsius for general forecast report
-        Rez.temp = fToC(Rez.temp);
-        Rez.apptemp = fToC(Rez.apptemp);
+        Rez.tempCelsius = fToC(Rez.tempFahrenheit);
+        Rez.apparentTempCelsius = fToC(Rez.apparentTempFahrenheit);
 
         // Round temperature to the second sign after coma
-        Rez.temp = roundPlus(Rez.temp, 2);
-        Rez.apptemp = roundPlus(Rez.apptemp, 2);
+        Rez.tempCelsius = roundPlus(Rez.tempCelsius, 1);
+        Rez.apparentTempCelsius = roundPlus(Rez.apparentTempCelsius, 1);
     });
     return Rez;
 }
