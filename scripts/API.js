@@ -23,6 +23,16 @@ function mphToKmh(speed) {
 }
 
 // =================================================
+// Conversion of atmospheric pressure units
+// =================================================
+
+// convert hPa to mmHg
+function hpaToMmhg(pressure) {
+    pressure /= 1.333333;
+	return pressure;
+}
+
+// =================================================
 // Math round
 // =================================================
 
@@ -122,7 +132,7 @@ function getWeatherReport(latitude, longitude) {
         $('#weather').html(Rez.summary);
         $('#weather_icon').css({backgroundPosition: `${chooseIcon(Rez.summary)[0]}px ${chooseIcon(Rez.summary)[1]}px`});
         $('#wind').html(windDirect(Rez.windBearing) + ' - '+ roundPlus(mphToKmh(Rez.windSpeed),2) + ' km/h');
-        $('#pressure').html(Rez.pressure-270 + ' mmHg');
+        $('#pressure').html(roundPlus(hpaToMmhg(Rez.pressure),2) + ' mmHg');
         $('#humid').html(Rez.humidity*100 + '%');
     });
 }
