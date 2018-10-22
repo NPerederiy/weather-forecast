@@ -21,7 +21,6 @@ var Weather = {
 };
 
 // change the color of the area by hover
-// showing area description by hover
 $('.area').hover(function() {
     if ($(this).attr("id") != selected) {
         $(this).css({
@@ -52,7 +51,7 @@ $('.area').click(function () {
 
         // get weather from API
         var coords = getCoordsById($(this).attr("id"));
-        var weatherInfo = getWeatherReport(coords.latitude, coords.longitude);
+        getWeatherReport(coords.latitude, coords.longitude);
 
         // show tooltip
         $('#tooltip').css({visibility: 'visible'});
