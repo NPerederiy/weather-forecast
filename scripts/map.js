@@ -1,16 +1,16 @@
 var selected = "";
 
 var Weather = {
-    CLOUDY: [-50, -120],
-    SUNNY: [-130, -120],
-    SUNNYWCLOUDS: [-210, -120],
+    Mostly: [-50, -120],
+    Clear: [-130, -120],
+    Partly: [-210, -120],
     MOONWCLOUDS: [-290, -120],
-    SUNNYWRAIN: [-370, -120],
+    LightRain: [-370, -120],
 
-    STORMY: [-50, -210],
-    RAINY: [-130, -210],
-    SNOWY: [-210, -210],
-    WINDY: [-290, -210],
+    Stormy: [-50, -210],
+    Rain: [-130, -210],
+    Snow: [-210, -210],
+    Windy: [-290, -210],
     MOONWRAIN: [-370, -210],
 
     SLEET: [-50, -300],
@@ -53,12 +53,6 @@ $('.area').click(function () {
         // get weather from API
         var coords = getCoordsById($(this).attr("id"));
         var weatherInfo = getWeatherReport(coords.latitude, coords.longitude);
-        if(weatherInfo == null){
-            console.log('data not received!')
-        } else {
-            console.log(weatherInfo);
-            // TODO: Insert data into HTML markup.
-        }
 
         // show tooltip
         $('#tooltip').css({visibility: 'visible'});
@@ -82,9 +76,15 @@ $('.area').click(function () {
         
         //console.log(`x: ${x}; y: ${y}; w: ${w}; h: ${h}`);
         $('#tooltip').css({ top: `${y}`, left: `${x}` });
+		event.cancelBubble = true;
     }
 });
 
+$('body').click(function () {
+	console.log("hui");
+	$('#tooltip').css({visibility: 'hidden'});
+	$('#' + selected).css({fill: '#0069cc'});
+});
 // scaling the map when resizing the client window
 function ScaleMap() {
     var oH = document.documentElement.clientHeight;
