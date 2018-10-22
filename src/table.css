@@ -43,7 +43,7 @@ td {
 #weather_icon {
     height: 80px;
     width: 80px;
-    margin: 0px 5px 0px;
+    margin-right: 7px;
     background-image: url(weather.svg);
     background-size: 500px 500px;
     background-position-x: -370px;
@@ -55,7 +55,7 @@ td {
     margin: 0px 5px 0px;
 }
 .weather_data {
-    height: 80px;
+    height: auto;
     display: flex;
     flex-direction: row;
 }
@@ -69,7 +69,7 @@ td {
     margin-left: 2px;
 }
 #weather {
-    font-size: 24px;
+    font-size: 18px;
     align-self: center;
     margin-left: 5px;
 }

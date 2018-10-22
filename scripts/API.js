@@ -17,11 +17,58 @@ function fToC(degrees) {
 // =================================================
 
 // Round flout
-function roundPlus(x, n) { //x - flout number, n - count signs after coma
+function roundPlus(x, n) { //x - float number, n - count signs after coma
     if (isNaN(x) || isNaN(n)) return false;
     var m = Math.pow(10, n);
     return Math.round(x * m) / m;
 }
+
+// =================================================
+// Wind Direction
+// =================================================
+
+// calculate direction of the wind
+function windDirect(x) { //x - wind direction in degrees
+    if (isNaN(x)) return false;
+    if((x >= 0 & x <= 22.5) || (x > 337.5))
+        return "N";
+    else if(x <= 67.5)
+        return "NE";
+    else if(x <= 112.5)
+        return "E";
+    else if(x <= 157.5)
+        return "SE";
+    else if(x <= 202.5)
+        return "S";
+    else if(x <= 247.5)
+        return "SW";
+    else if(x <= 292.5)
+        return "W";
+    else return "NW";
+}
+
+// =================================================
+// Icon Definition
+// =================================================
+
+// chhose appropriate icon
+function chooseIcon(define) { //x - wind direction in degrees
+    if (define == null) return false;
+    if(define == "Clear")
+        return Weather.Clear;
+    if(define == "Partly Cloudy")
+        return Weather.Partly;
+    if(define == "Mostly Cloudy" || define == "Overcast")
+        return Weather.Mostly;
+    if(define == "Light Rain")
+        return Weather.LightRain;
+    if(define == "Rain")
+        return Weather.Rain;
+    if(define == "Snow")
+        return Weather.Snow;
+    return Weather.Clear;
+}
+
 
 // =================================================
 // Weather Reporter
@@ -58,6 +105,14 @@ function getWeatherReport(latitude, longitude) {
         // Round temperature to the second sign after coma
         Rez.tempCelsius = roundPlus(Rez.tempCelsius, 1);
         Rez.apparentTempCelsius = roundPlus(Rez.apparentTempCelsius, 1);
+
+        console.log(Rez);
+        // Put values into the tooltip
+        $('#temperature').html(Rez.tempCelsius + ' C<sup>o</sup>');
+        $('#weather').html(Rez.summary);
+        $('#weather_icon').css({backgroundPosition: `${chooseIcon(Rez.summary)[0]}px ${chooseIcon(Rez.summary)[1]}px`});
+        $('#wind').html(windDirect(Rez.windBearing) + ' - '+ Rez.windSpeed + ' mph');
+        $('#pressure').html(Rez.pressure + ' mmHg');
+        $('#humid').html(Rez.humidity*100 + '%');
     });
-    return Rez;
 }
