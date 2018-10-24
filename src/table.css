@@ -11,8 +11,8 @@ table {
     visibility: hidden;
     border-radius: 10%;
     border-collapse: collapse;
-    width: 200px;
-    height: 240px;
+    width: 220px;
+    height: auto;
     color: white;
     font-family: /*'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif, 'Times New Roman', Times, serif,*/ HP Simplified;
     background-color: rgba(128, 183, 235, 0.75);
@@ -41,8 +41,8 @@ td {
     padding-right: 10px;
 }
 #weather_icon {
-    height: 80px;
-    width: 80px;
+    height: 80px !important;
+    width: 80px !important;
     margin-right: 7px;
     background-image: url(weather.svg);
     background-size: 500px 500px;
@@ -75,4 +75,8 @@ td {
 }
 #district {
     color: white;
+}
+div#main_info{
+    position: absolute;
+    margin-left: 85px;
 }

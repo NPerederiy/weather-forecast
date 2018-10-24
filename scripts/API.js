@@ -71,7 +71,9 @@ function windDirect(x) { //x - wind direction in degrees
 // Icon Definition
 // =================================================
 
+
 // choose appropriate icon
+
 function chooseIcon(define) { //x - wind direction in degrees
     if (define == null) return false;
     if(define == "Clear")
@@ -82,10 +84,16 @@ function chooseIcon(define) { //x - wind direction in degrees
         return Weather.Mostly;
     if(define == "Light Rain")
         return Weather.LightRain;
-    if(define == "Rain")
+    if(define == "Rain" || define == "Drizzle")
         return Weather.Rain;
     if(define == "Snow")
         return Weather.Snow;
+	if (define == "Drizzle and Breezy" || define == "Light Rain and Breezy" || define == "Drizzle and Windy")
+		return Weather.WINDWRAIN;
+	if (define == "Breezy and Mostly Cloudy" || define == "Breezy and Overcast")
+		return Weather.CLOUDSANDWIND;
+	if (define == "Foggy")
+		return Weather.FOGGY;
     return Weather.Clear;
 }
 
