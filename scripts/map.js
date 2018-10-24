@@ -1,4 +1,5 @@
 var selected = "";
+var nightmode = false;
 
 var Weather = {
     Mostly: [-50, -120],
@@ -24,29 +25,51 @@ var Weather = {
 // change the color of the area by hover
 $('.area').hover(function() {
     if ($(this).attr("id") != selected) {
-        $(this).css({
-            fill: '#1a90ff'
-        });
+        if(nightmode){
+            $(this).css({
+                fill: '#1a90ff'
+            });
+        } else {
+            $(this).css({
+                fill: 'rgb(170, 216, 138)'
+            });
+        }
     }
 });
 
 $('.area').mouseout(function () {
     if ($(this).attr("id") != selected) {
-        $(this).css({
-            fill: '#0069cc'
-        });
+        if(nightmode){
+            $(this).css({
+                fill: '#0069cc'
+            });
+        } else {
+            $(this).css({
+                fill: '#d0e3c3'
+            });
+        }
     }
 });
 
 $('.area').click(function () {    
     if ($(this).attr("id") != selected) {
         // change the color of the area by click
-        $('.area').css({
-            fill: '#0069cc'
-        });
-        $(this).css({
-            fill: '#8ecaff'
-        });
+        if(nightmode){
+            $('.area').css({
+                fill: '#0069cc'
+            });
+            $(this).css({
+                fill: '#8ecaff'
+            });
+        } else {
+            $('.area').css({
+                fill: '#d0e3c3'
+            });
+            $(this).css({
+                fill: 'rgb(125, 193, 78)'
+            });
+        }
+       
         $('#district').html($(this).parent().attr("xlink:title"));
         selected = $(this).attr("id");
 
@@ -82,17 +105,98 @@ $('.area').click(function () {
 
 $('body').click(function () {
 	$('#tooltip').css({visibility: 'hidden'});
-	$('#' + selected).css({fill: '#0069cc'});
+    if(nightmode){
+        $('#' + selected).css({
+            fill: '#0069cc'
+        });
+    } else {
+        $('#' + selected).css({
+            fill: '#d0e3c3'
+        });
+    }
 	selected = "";
 });
+
+$('#mode_switch').click(()=>{
+    nightmode = !nightmode;
+    selected = "";
+    console.log('nightmode value was switched to: '+nightmode);
+    if(nightmode){
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-sun3.png')";
+    } else {
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-moon3.png')";
+    }
+    changeColorScheme();
+});
+
+$('#mode_switch').hover(()=>{
+    if(nightmode){
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-sun3.png')";
+    } else {
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-moon3.png')";
+    }
+});
+
+$('#mode_switch').mouseout(()=>{
+    if(nightmode){
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-sun1.png')";
+    } else {
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-moon1.png')";
+    }
+});
+
+function changeColorScheme() {
+    if (nightmode) {
+        document.body.style.backgroundColor = '#003366';
+        $('body').css({
+            color: '#ffffff'
+        });
+        $('.area').css({
+            fill: '#0069cc',
+            stroke: '#ffffff'
+        });
+        $('#mode_switch').css({
+            width: '40px',
+            height: '40px'
+        });
+        document.getElementById('tooltip').style.backgroundColor = 'rgba(128, 183, 235, 0.7)';
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-sun1.png')";
+        document.getElementById('mode_switch').style.backgroundSize = '40px';
+        document.getElementById('logo').style.backgroundImage = "url('src/donut-logo.png')";
+    }
+    else {
+        document.body.style.backgroundColor = '#f7f7f7';
+        $('body').css({
+            color: 'rgb(96, 120, 155)'
+        });
+        $('.area').css({
+            fill: '#d0e3c3',
+            stroke: '#76866c'
+        });
+        $('#mode_switch').css({
+            width: '36px',
+            height: '36px'
+        });
+        document.getElementById('tooltip').style.backgroundColor = 'rgba(26, 22, 0, 0.4)';
+        document.getElementById('mode_switch').style.backgroundImage = "url('src/icon-moon1.png')";
+        document.getElementById('mode_switch').style.backgroundSize = '36px';
+        document.getElementById('logo').style.backgroundImage = "url('src/donut-logo3.png')";
+    }
+}
+
 // scaling the map when resizing the client window
-function ScaleMap() {
+function scaleMap() {
     var oH = document.documentElement.clientHeight;
     oH -= oH * 0.1;
 
     var scale = oH / 420;
     //console.log("scale = " + scale);
     $('#map').css({ transform: `scale(${scale})` });
+}
+
+function onLoad(){
+    changeColorScheme();
+    scaleMap();
 }
 
 function getCoordsById(id) { // TODO: Add Crimea's and Kyiv region's coordinates.
