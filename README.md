@@ -1,2 +1,2 @@
-# Weather forecast
-A simple web application that displays the weather forecast in the regions of Ukraine
+# Interactive weather map of Ukraine
+A simple web application that allows you to find out the current weather in any of the regions of Ukraine

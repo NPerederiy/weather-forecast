@@ -3,7 +3,7 @@
 
 
 // =================================================
-// Temperature Converter
+// Temperature Conversion
 // =================================================
 
 // convert fahrenheit to celsius
@@ -13,10 +13,30 @@ function fToC(degrees) {
 }
 
 // =================================================
+// Speed Conversion 
+// =================================================
+
+// convert MPH to KMH
+function mphToKmh(speed) {
+    speed *= 1.609344;
+	return speed;
+}
+
+// =================================================
+// Conversion of atmospheric pressure units
+// =================================================
+
+// convert hPa to mmHg
+function hpaToMmhg(pressure) {
+    pressure /= 1.333333;
+	return pressure;
+}
+
+// =================================================
 // Math round
 // =================================================
 
-// Round flout
+// round float
 function roundPlus(x, n) { //x - float number, n - count signs after coma
     if (isNaN(x) || isNaN(n)) return false;
     var m = Math.pow(10, n);
@@ -51,7 +71,9 @@ function windDirect(x) { //x - wind direction in degrees
 // Icon Definition
 // =================================================
 
-// chose appropriate icon
+
+// choose appropriate icon
+
 function chooseIcon(define) { //x - wind direction in degrees
     if (define == null) return false;
     if(define == "Clear")
@@ -70,6 +92,8 @@ function chooseIcon(define) { //x - wind direction in degrees
 		return Weather.WINDWRAIN;
 	if (define == "Breezy and Mostly Cloudy" || define == "Breezy and Overcast")
 		return Weather.CLOUDSANDWIND;
+	if (define == "Foggy")
+		return Weather.FOGGY;
     return Weather.Clear;
 }
 
@@ -85,19 +109,19 @@ function getWeatherReport(latitude, longitude) {
 			longi        = longitude,
 			api_call     = url + apiKey + "/" + lati + "," + longi + "?extend=hourly&callback=?";
 
-    var Rez = {};
-	// Call to the DarkSky API to retrieve JSON
+    // Call to the DarkSky API to retrieve JSON
     $.getJSON(api_call, function (forecast)
     {
+        var Rez = {};
         Rez.tempFahrenheit = forecast.currently.temperature; //текущая темп.
         Rez.apparentTempFahrenheit = forecast.currently.apparentTemperature; //по ощущениям
         Rez.visibility = forecast.currently.visibility; //видимость
         Rez.cloudCover = forecast.currently.cloudCover; //облачность
-        Rez.dewPoint = forecast.currently.dewPoint; //Точка росы
+        Rez.dewPoint = forecast.currently.dewPoint; //точка росы
         Rez.humidity = forecast.currently.humidity; //влажность
         Rez.ozone = forecast.currently.ozone; //озон
         Rez.pressure = forecast.currently.pressure; //давление
-        Rez.summary = forecast.currently.summary; //вивод(словами)
+        Rez.summary = forecast.currently.summary; //вывод(словами)
         Rez.windBearing = forecast.currently.windBearing; //направление ветра
         Rez.windSpeed = forecast.currently.windSpeed; //скорость ветра
         Rez.timezone = forecast.timezone; //где это
@@ -106,17 +130,17 @@ function getWeatherReport(latitude, longitude) {
         Rez.tempCelsius = fToC(Rez.tempFahrenheit);
         Rez.apparentTempCelsius = fToC(Rez.apparentTempFahrenheit);
 
-        // Round temperature to the second sign after coma
+        // Round temperature to the 1st sign after coma
         Rez.tempCelsius = roundPlus(Rez.tempCelsius, 1);
         Rez.apparentTempCelsius = roundPlus(Rez.apparentTempCelsius, 1);
 
         console.log(Rez);
         // Put values into the tooltip
-        $('#temperature').html(Rez.tempCelsius + ' C<sup>o</sup>');
+        $('#temperature').html(Rez.tempCelsius + ' &deg;C');
         $('#weather').html(Rez.summary);
         $('#weather_icon').css({backgroundPosition: `${chooseIcon(Rez.summary)[0]}px ${chooseIcon(Rez.summary)[1]}px`});
-        $('#wind').html(windDirect(Rez.windBearing) + ' - '+ Rez.windSpeed + ' mph');
-        $('#pressure').html(Rez.pressure + ' mmHg');
+        $('#wind').html(windDirect(Rez.windBearing) + ' - '+ roundPlus(mphToKmh(Rez.windSpeed),2) + ' km/h');
+        $('#pressure').html(roundPlus(hpaToMmhg(Rez.pressure),2) + ' mmHg');
         $('#humid').html(Rez.humidity*100 + '%');
     });
 }

@@ -22,7 +22,6 @@ var Weather = {
 };
 
 // change the color of the area by hover
-// showing area description by hover
 $('.area').hover(function() {
     if ($(this).attr("id") != selected) {
         $(this).css({
@@ -53,7 +52,7 @@ $('.area').click(function () {
 
         // get weather from API
         var coords = getCoordsById($(this).attr("id"));
-        var weatherInfo = getWeatherReport(coords.latitude, coords.longitude);
+        getWeatherReport(coords.latitude, coords.longitude);
 
         // show tooltip
         $('#tooltip').css({visibility: 'visible'});
@@ -84,6 +83,7 @@ $('.area').click(function () {
 $('body').click(function () {
 	$('#tooltip').css({visibility: 'hidden'});
 	$('#' + selected).css({fill: '#0069cc'});
+	selected = "";
 });
 // scaling the map when resizing the client window
 function ScaleMap() {
