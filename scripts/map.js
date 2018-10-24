@@ -17,7 +17,8 @@ var Weather = {
     FOGGY: [-130, -300],
     MOON: [-210, -300],
     WINDWRAIN: [-290, -300],
-    WINDWCLOUDSANDRAIN: [-370, -300]
+    WINDWCLOUDSANDRAIN: [-370, -300],
+	CLOUDSANDWIND: [-50, -380]
 };
 
 // change the color of the area by hover
@@ -81,7 +82,6 @@ $('.area').click(function () {
 });
 
 $('body').click(function () {
-	console.log("hui");
 	$('#tooltip').css({visibility: 'hidden'});
 	$('#' + selected).css({fill: '#0069cc'});
 });

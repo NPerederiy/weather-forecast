@@ -11,7 +11,7 @@ table {
     visibility: hidden;
     border-radius: 10%;
     border-collapse: collapse;
-    width: 200px;
+    width: auto;
     height: 240px;
     color: white;
     font-family: /*'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif, 'Times New Roman', Times, serif,*/ HP Simplified;
