@@ -1,12 +1,9 @@
 body{
-    background-color: #003366;
     color: #ffffff;
 }
 
 div#main{
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
+    margin: 5% 10% 0 10%;
     height: 80%;   
     display: flex;
     flex-direction: column;
@@ -19,20 +16,20 @@ div#logo, div#team_name, div#mode_switch{
     opacity: 0.4;
 }
 
-div#mode_switch{
-    top: 10px;
-    right: 10px;
+div#mode_switch, div#logo{
     width: 40px;
     height: 40px;
     background-size: 40px;
 }
 
+div#mode_switch{
+    top: 10px;
+    right: 10px;
+}
+
 div#logo{
     right: 10px;
     bottom: 36px;
-    width: 40px;
-    height: 40px;
-    background-size: 40px;
 }
 
 div#team_name{

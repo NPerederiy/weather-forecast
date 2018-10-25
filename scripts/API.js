@@ -77,24 +77,24 @@ function windDirect(x) { //x - wind direction in degrees
 function chooseIcon(define) { //x - wind direction in degrees
     if (define == null) return false;
     if(define == "Clear")
-        return Weather.Clear;
+        return WEATHER.CLEAR;
     if(define == "Partly Cloudy")
-        return Weather.Partly;
+        return WEATHER.PARTLY;
     if(define == "Mostly Cloudy" || define == "Overcast")
-        return Weather.Mostly;
+        return WEATHER.MOSTLY;
     if(define == "Light Rain")
-        return Weather.LightRain;
+        return WEATHER.LIGHTRAIN;
     if(define == "Rain" || define == "Drizzle")
-        return Weather.Rain;
+        return WEATHER.RAIN;
     if(define == "Snow")
-        return Weather.Snow;
+        return WEATHER.SNOW;
 	if (define == "Drizzle and Breezy" || define == "Light Rain and Breezy" || define == "Drizzle and Windy")
-		return Weather.WINDWRAIN;
+		return WEATHER.WINDWRAIN;
 	if (define == "Breezy and Mostly Cloudy" || define == "Breezy and Overcast")
-		return Weather.CLOUDSANDWIND;
+		return WEATHER.CLOUDSANDWIND;
 	if (define == "Foggy")
-		return Weather.FOGGY;
-    return Weather.Clear;
+		return WEATHER.FOGGY;
+    return WEATHER.CLEAR;
 }
 
 
@@ -112,35 +112,35 @@ function getWeatherReport(latitude, longitude) {
     // Call to the DarkSky API to retrieve JSON
     $.getJSON(api_call, function (forecast)
     {
-        var Rez = {};
-        Rez.tempFahrenheit = forecast.currently.temperature; //текущая темп.
-        Rez.apparentTempFahrenheit = forecast.currently.apparentTemperature; //по ощущениям
-        Rez.visibility = forecast.currently.visibility; //видимость
-        Rez.cloudCover = forecast.currently.cloudCover; //облачность
-        Rez.dewPoint = forecast.currently.dewPoint; //точка росы
-        Rez.humidity = forecast.currently.humidity; //влажность
-        Rez.ozone = forecast.currently.ozone; //озон
-        Rez.pressure = forecast.currently.pressure; //давление
-        Rez.summary = forecast.currently.summary; //вывод(словами)
-        Rez.windBearing = forecast.currently.windBearing; //направление ветра
-        Rez.windSpeed = forecast.currently.windSpeed; //скорость ветра
-        Rez.timezone = forecast.timezone; //где это
+        var report = {};
+        report.tempFahrenheit = forecast.currently.temperature; //текущая темп.
+        report.apparentTempFahrenheit = forecast.currently.apparentTemperature; //по ощущениям
+        report.visibility = forecast.currently.visibility; //видимость
+        report.cloudCover = forecast.currently.cloudCover; //облачность
+        report.dewPoint = forecast.currently.dewPoint; //точка росы
+        report.humidity = forecast.currently.humidity; //влажность
+        report.ozone = forecast.currently.ozone; //озон
+        report.pressure = forecast.currently.pressure; //давление
+        report.summary = forecast.currently.summary; //вывод(словами)
+        report.windBearing = forecast.currently.windBearing; //направление ветра
+        report.windSpeed = forecast.currently.windSpeed; //скорость ветра
+        report.timezone = forecast.timezone; //где это
 
         // Сonvert degrees to celsius for general forecast report
-        Rez.tempCelsius = fToC(Rez.tempFahrenheit);
-        Rez.apparentTempCelsius = fToC(Rez.apparentTempFahrenheit);
+        report.tempCelsius = fToC(report.tempFahrenheit);
+        report.apparentTempCelsius = fToC(report.apparentTempFahrenheit);
 
         // Round temperature to the 1st sign after coma
-        Rez.tempCelsius = roundPlus(Rez.tempCelsius, 1);
-        Rez.apparentTempCelsius = roundPlus(Rez.apparentTempCelsius, 1);
+        report.tempCelsius = roundPlus(report.tempCelsius, 1);
+        report.apparentTempCelsius = roundPlus(report.apparentTempCelsius, 1);
 
-        console.log(Rez);
+        console.log(report);
         // Put values into the tooltip
-        $('#temperature').html(Rez.tempCelsius + ' &deg;C');
-        $('#weather').html(Rez.summary);
-        $('#weather_icon').css({backgroundPosition: `${chooseIcon(Rez.summary)[0]}px ${chooseIcon(Rez.summary)[1]}px`});
-        $('#wind').html(windDirect(Rez.windBearing) + ' - '+ roundPlus(mphToKmh(Rez.windSpeed),2) + ' km/h');
-        $('#pressure').html(roundPlus(hpaToMmhg(Rez.pressure),2) + ' mmHg');
-        $('#humid').html(Rez.humidity*100 + '%');
+        $('#temperature').html(report.tempCelsius + ' &deg;C');
+        $('#weather').html(report.summary);
+        $('#weather_icon').css({backgroundPosition: `${chooseIcon(report.summary)[0]}px ${chooseIcon(report.summary)[1]}px`});
+        $('#wind').html(windDirect(report.windBearing) + ' - '+ roundPlus(mphToKmh(report.windSpeed),2) + ' km/h');
+        $('#pressure').html(roundPlus(hpaToMmhg(report.pressure),2) + ' mmHg');
+        $('#humid').html(report.humidity*100 + '%');
     });
 }
