@@ -15,7 +15,7 @@ table {
     height: auto;
     color: white;
     font-family: /*'Agency FB', 'Segoe UI', Tahoma, Verdana, sans-serif, 'Times New Roman', Times, serif,*/ HP Simplified;
-    background-color: rgba(128, 183, 235, 0.75);
+    background-color: rgba(128, 183, 235, 0.7);
 }
 table.detail {
     position: absolute;

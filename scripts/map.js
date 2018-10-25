@@ -1,16 +1,33 @@
-var selected = "";
+var SELECTED = "";
+var NIGHTMODE = false;
 
-var Weather = {
-    Mostly: [-50, -120],
-    Clear: [-130, -120],
-    Partly: [-210, -120],
+const DAY_BACKGROUND = '#f7f7f7';
+const DAY_TEXT_COLOR = 'rgb(96, 120, 155)';
+const DAY_REGION_NORMAL = '#d0e3c3';
+const DAY_REGION_STROKE = '#76866c';
+const DAY_REGION_HOVERED = 'rgb(170, 216, 138)';
+const DAY_REGION_CLICKED = 'rgb(125, 193, 78)';
+const DAY_TOOLTIP_BACKGROUND = 'rgba(26, 22, 0, 0.4)';
+
+const NIGHT_BACKGROUND = '#003366';
+const NIGHT_TEXT_COLOR = '#ffffff';
+const NIGHT_REGION_NORMAL = '#0069cc';
+const NIGHT_REGION_STROKE = '#ffffff';
+const NIGHT_REGION_HOVERED = '#1a90ff';
+const NIGHT_REGION_CLICKED = '#8ecaff';
+const NIGHT_TOOLTIP_BACKGROUND = 'rgba(128, 183, 235, 0.7)';
+
+var WEATHER = {
+    MOSTLY: [-50, -120],
+    CLEAR: [-130, -120],
+    PARTLY: [-210, -120],
     MOONWCLOUDS: [-290, -120],
-    LightRain: [-370, -120],
+    LIGHTRAIN: [-370, -120],
 
-    Stormy: [-50, -210],
-    Rain: [-130, -210],
-    Snow: [-210, -210],
-    Windy: [-290, -210],
+    STORMY: [-50, -210],
+    RAIN: [-130, -210],
+    SNOW: [-210, -210],
+    WINDY: [-290, -210],
     MOONWRAIN: [-370, -210],
 
     SLEET: [-50, -300],
@@ -23,32 +40,54 @@ var Weather = {
 
 // change the color of the area by hover
 $('.area').hover(function() {
-    if ($(this).attr("id") != selected) {
-        $(this).css({
-            fill: '#1a90ff'
-        });
+    if ($(this).attr("id") != SELECTED) {
+        if(NIGHTMODE){
+            $(this).css({
+                fill: NIGHT_REGION_HOVERED
+            });
+        } else {
+            $(this).css({
+                fill: DAY_REGION_HOVERED
+            });
+        }
     }
 });
 
 $('.area').mouseout(function () {
-    if ($(this).attr("id") != selected) {
-        $(this).css({
-            fill: '#0069cc'
-        });
+    if ($(this).attr("id") != SELECTED) {
+        if(NIGHTMODE){
+            $(this).css({
+                fill: NIGHT_REGION_NORMAL
+            });
+        } else {
+            $(this).css({
+                fill: DAY_REGION_NORMAL
+            });
+        }
     }
 });
 
 $('.area').click(function () {    
-    if ($(this).attr("id") != selected) {
+    if ($(this).attr("id") != SELECTED) {
         // change the color of the area by click
-        $('.area').css({
-            fill: '#0069cc'
-        });
-        $(this).css({
-            fill: '#8ecaff'
-        });
+        if(NIGHTMODE){
+            $('.area').css({
+                fill: NIGHT_REGION_NORMAL
+            });
+            $(this).css({
+                fill: NIGHT_REGION_CLICKED
+            });
+        } else {
+            $('.area').css({
+                fill: DAY_REGION_NORMAL
+            });
+            $(this).css({
+                fill: DAY_REGION_CLICKED
+            });
+        }
+       
         $('#district').html($(this).parent().attr("xlink:title"));
-        selected = $(this).attr("id");
+        SELECTED = $(this).attr("id");
 
         // get weather from API
         var coords = getCoordsById($(this).attr("id"));
@@ -80,19 +119,99 @@ $('.area').click(function () {
     }
 });
 
-$('body').click(function () {
+$('body').click(() => {
 	$('#tooltip').css({visibility: 'hidden'});
-	$('#' + selected).css({fill: '#0069cc'});
-	selected = "";
+    if(NIGHTMODE){
+        $('#' + SELECTED).css({
+            fill: NIGHT_REGION_NORMAL
+        });
+    } else {
+        $('#' + SELECTED).css({
+            fill: DAY_REGION_NORMAL
+        });
+    }
+	SELECTED = "";
 });
+
+$('#mode_switch').click(() => {
+    NIGHTMODE = !NIGHTMODE;
+    SELECTED = "";
+    console.log('nightmode value was switched to: '+NIGHTMODE);
+    changeBackgroundImage('mode_switch','src/icon-sun3.png','src/icon-moon3.png');
+    changeColorScheme();
+});
+
+$('#mode_switch').hover(() => {
+    changeBackgroundImage('mode_switch','src/icon-sun3.png','src/icon-moon3.png');
+});
+
+$('#mode_switch').mouseout(() => {
+    changeBackgroundImage('mode_switch','src/icon-sun1.png','src/icon-moon1.png');
+});
+
+function changeColorScheme() {
+    if (NIGHTMODE) {
+        $('body').css({
+            color: NIGHT_TEXT_COLOR,
+            backgroundColor: NIGHT_BACKGROUND
+        });
+        $('.area').css({
+            fill: NIGHT_REGION_NORMAL,
+            stroke: NIGHT_REGION_STROKE
+        });
+        $('#mode_switch').css({
+            width: '40px',
+            height: '40px',
+            backgroundSize: '40px'
+        });
+        $('#tooltip').css({
+            backgroundColor: NIGHT_TOOLTIP_BACKGROUND
+        });
+    }
+    else {
+        $('body').css({
+            color: DAY_TEXT_COLOR,
+            backgroundColor: DAY_BACKGROUND
+        });
+        $('.area').css({
+            fill: DAY_REGION_NORMAL,
+            stroke: DAY_REGION_STROKE
+        });
+        $('#mode_switch').css({
+            width: '36px',
+            height: '36px',
+            backgroundSize: '36px'
+        });
+        $('#tooltip').css({
+            backgroundColor: DAY_TOOLTIP_BACKGROUND
+        });
+    }
+    changeBackgroundImage('mode_switch','src/icon-sun1.png','src/icon-moon1.png');
+    changeBackgroundImage('logo','src/donut-logo.png','src/donut-logo3.png');
+}
+
+function changeBackgroundImage(id, resource1, resource2) {
+    if (NIGHTMODE) {
+        document.getElementById(id).style.backgroundImage = `url(${resource1})`;
+    }
+    else {
+        document.getElementById(id).style.backgroundImage = `url(${resource2})`;
+    }
+}
+
 // scaling the map when resizing the client window
-function ScaleMap() {
+function scaleMap() {
     var oH = document.documentElement.clientHeight;
     oH -= oH * 0.1;
 
     var scale = oH / 420;
     //console.log("scale = " + scale);
     $('#map').css({ transform: `scale(${scale})` });
+}
+
+function onLoad(){
+    changeColorScheme();
+    scaleMap();
 }
 
 function getCoordsById(id) { // TODO: Add Crimea's and Kyiv region's coordinates.
