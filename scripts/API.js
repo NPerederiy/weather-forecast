@@ -90,7 +90,7 @@ function chooseIcon(define) { //x - wind direction in degrees
         return WEATHER.SNOW;
 	if (define == "Drizzle and Breezy" || define == "Light Rain and Breezy" || define == "Drizzle and Windy")
 		return WEATHER.WINDWRAIN;
-	if (define == "Breezy and Mostly Cloudy" || define == "Breezy and Overcast")
+	if (define == "Breezy and Mostly Cloudy" || define == "Breezy and Overcast" || define == "Breezy and Partly Cloudy")
 		return WEATHER.CLOUDSANDWIND;
 	if (define == "Foggy")
 		return WEATHER.FOGGY;

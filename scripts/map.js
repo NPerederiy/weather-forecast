@@ -67,7 +67,7 @@ $('.area').mouseout(function () {
     }
 });
 
-$('.area').click(function () {    
+$('.area').click(function ( event ) {    
     if ($(this).attr("id") != SELECTED) {
         // change the color of the area by click
         if(NIGHTMODE){
@@ -116,6 +116,8 @@ $('.area').click(function () {
         //console.log(`x: ${x}; y: ${y}; w: ${w}; h: ${h}`);
         $('#tooltip').css({ top: `${y}`, left: `${x}` });
 		event.cancelBubble = true;
+		
+		event.stopPropagation();
     }
 });
 
