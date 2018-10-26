@@ -22,6 +22,12 @@ function mphToKmh(speed) {
 	return speed;
 }
 
+// convert KM/H to M/S
+function kmhToMs(speed) {
+    speed /= 3.6;
+	return speed;
+}
+
 // =================================================
 // Conversion of atmospheric pressure units
 // =================================================
@@ -139,8 +145,8 @@ function getWeatherReport(latitude, longitude) {
         $('#temperature').html(report.tempCelsius + ' &deg;C');
         $('#weather').html(report.summary);
         $('#weather_icon').css({backgroundPosition: `${chooseIcon(report.summary)[0]}px ${chooseIcon(report.summary)[1]}px`});
-        $('#wind').html(windDirect(report.windBearing) + ' - '+ roundPlus(mphToKmh(report.windSpeed),2) + ' km/h');
+        $('#wind').html(windDirect(report.windBearing) + ' - '+ roundPlus(kmhToMs(mphToKmh(report.windSpeed)),1) + ' m/s');
         $('#pressure').html(roundPlus(hpaToMmhg(report.pressure),2) + ' mmHg');
-        $('#humid').html(report.humidity*100 + '%');
+        $('#humid').html(roundPlus(report.humidity*100,2) + '%');
     });
 }
