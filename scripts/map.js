@@ -9,13 +9,13 @@ const DAY_REGION_HOVERED = 'rgb(170, 216, 138)';
 const DAY_REGION_CLICKED = 'rgb(125, 193, 78)';
 const DAY_TOOLTIP_BACKGROUND = 'rgba(26, 22, 0, 0.4)';
 
-const NIGHT_BACKGROUND = '#003366';
-const NIGHT_TEXT_COLOR = '#ffffff';
-const NIGHT_REGION_NORMAL = '#0069cc';
-const NIGHT_REGION_STROKE = '#ffffff';
-const NIGHT_REGION_HOVERED = '#1a90ff';
-const NIGHT_REGION_CLICKED = '#8ecaff';
-const NIGHT_TOOLTIP_BACKGROUND = 'rgba(128, 183, 235, 0.7)';
+const NIGHT_BACKGROUND = '#232e3c'; // '#17212b' // '#003366'
+const NIGHT_TEXT_COLOR = '#ffffff'; // '#ffffff'
+const NIGHT_REGION_NORMAL = '#2b5278'; // '#0069cc'
+const NIGHT_REGION_STROKE = '#ffffff'; // '#ffffff'
+const NIGHT_REGION_HOVERED = 'rgb(64, 115, 164)'; // '#477db5'; // '#1a90ff'
+const NIGHT_REGION_CLICKED = '#5288c1'; // '#8ecaff'
+const NIGHT_TOOLTIP_BACKGROUND =  'rgba(144, 183, 225, 0.7)' /*'rgba(120, 166, 214, 0.7)'*/; // 'rgba(128, 183, 235, 0.7)'
 
 var WEATHER = {
     MOSTLY: [-50, -120],
