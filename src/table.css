@@ -24,6 +24,8 @@ table.detail {
 }
 table.team {
     position: absolute;
+	visibility: visible;
+	display: none;
     right: 10px;
     width: 180px;
     bottom: 86px;

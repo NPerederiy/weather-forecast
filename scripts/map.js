@@ -116,8 +116,9 @@ $('.area').click(function ( event ) {
         
         //console.log(`x: ${x}; y: ${y}; w: ${w}; h: ${h}`);
         $('#tooltip').css({ top: `${y}`, left: `${x}` });
-		event.cancelBubble = true;
+		$('#teamList').css({display: "none"});
 		
+		event.cancelBubble = true;
 		event.stopPropagation();
     }
 });
@@ -134,11 +135,13 @@ $('body').click(() => {
         });
     }
 	SELECTED = "";
-	$('#teamList').css({visibility: "hidden"});
+	
+	$('#teamList').css({display: "none"});
 });
 
 $("#logo").click(function ( event ) {
-    $('#teamList').css({ visibility: 'visible' });
+    $('#teamList').toggle();
+	
     event.cancelBubble = true;
     event.stopPropagation();
 });
