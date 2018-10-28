@@ -80,16 +80,16 @@ function windDirect(x) { //x - wind direction in degrees
 
 // choose appropriate icon
 
-function chooseIcon(define) { //x - wind direction in degrees
+function chooseIcon(define, night) { //x - wind direction in degrees
     if (define == null) return false;
     if(define == "Clear")
-        return WEATHER.CLEAR;
+        return night ? WEATHER.MOON : WEATHER.CLEAR;
     if(define == "Partly Cloudy")
-        return WEATHER.PARTLY;
+        return night ? WEATHER.MOONWCLOUDS : WEATHER.PARTLY;
     if(define == "Mostly Cloudy" || define == "Overcast")
         return WEATHER.MOSTLY;
     if(define == "Light Rain")
-        return WEATHER.LIGHTRAIN;
+        return night ? WEATHER.MOONWRAIN : WEATHER.LIGHTRAIN;
     if(define == "Rain" || define == "Drizzle")
         return WEATHER.RAIN;
     if(define == "Snow")
@@ -141,10 +141,16 @@ function getWeatherReport(latitude, longitude) {
         report.apparentTempCelsius = roundPlus(report.apparentTempCelsius, 1);
 
         console.log(report);
+		
+//		var date = new Date().toLocaleString('en-US', { timeZone: report.timezone });
+//		
+//		console.log(date);
+//		var night = date.getHours
+		
         // Put values into the tooltip
         $('#temperature').html(report.tempCelsius + ' &deg;C');
         $('#weather').html(report.summary);
-        $('#weather_icon').css({backgroundPosition: `${chooseIcon(report.summary)[0]}px ${chooseIcon(report.summary)[1]}px`});
+        $('#weather_icon').css({backgroundPosition: `${chooseIcon(report.summary, NIGHTMODE)[0]}px ${chooseIcon(report.summary, NIGHTMODE)[1]}px`});
         $('#wind').html(windDirect(report.windBearing) + ' - '+ roundPlus(kmhToMs(mphToKmh(report.windSpeed)),1) + ' m/s');
         $('#pressure').html(roundPlus(hpaToMmhg(report.pressure),2) + ' mmHg');
         $('#humid').html(roundPlus(report.humidity*100,2) + '%');
