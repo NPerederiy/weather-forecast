@@ -32,9 +32,10 @@ var WEATHER = {
 
     SLEET: [-50, -300],
     FOGGY: [-130, -300],
-    MOON: [-210, -300],
+    MOON: [-210, -310],
     WINDWRAIN: [-290, -300],
     WINDWCLOUDSANDRAIN: [-370, -300],
+	
 	CLOUDSANDWIND: [-50, -380]
 };
 
@@ -115,8 +116,9 @@ $('.area').click(function ( event ) {
         
         //console.log(`x: ${x}; y: ${y}; w: ${w}; h: ${h}`);
         $('#tooltip').css({ top: `${y}`, left: `${x}` });
-		event.cancelBubble = true;
+		$('#teamList').css({display: "none"});
 		
+		event.cancelBubble = true;
 		event.stopPropagation();
     }
 });
@@ -133,6 +135,26 @@ $('body').click(() => {
         });
     }
 	SELECTED = "";
+	
+	$('#teamList').css({display: "none"});
+});
+
+$("#logo").click(function ( event ) {
+    $('#teamList').toggle();
+	$("#tooltip").css({visibility: "hidden"});
+	if(NIGHTMODE){
+        $('#' + SELECTED).css({
+            fill: NIGHT_REGION_NORMAL
+        });
+    } else {
+        $('#' + SELECTED).css({
+            fill: DAY_REGION_NORMAL
+        });
+    }
+	SELECTED = "";
+	
+    event.cancelBubble = true;
+    event.stopPropagation();
 });
 
 $('#mode_switch').click(() => {
@@ -169,6 +191,9 @@ function changeColorScheme() {
         $('#tooltip').css({
             backgroundColor: NIGHT_TOOLTIP_BACKGROUND
         });
+        $('#teamList').css({
+            backgroundColor: NIGHT_TOOLTIP_BACKGROUND
+        });
     }
     else {
         $('body').css({
@@ -185,6 +210,9 @@ function changeColorScheme() {
             backgroundSize: '36px'
         });
         $('#tooltip').css({
+            backgroundColor: DAY_TOOLTIP_BACKGROUND
+        });
+        $('#teamList').css({
             backgroundColor: DAY_TOOLTIP_BACKGROUND
         });
     }
