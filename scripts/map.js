@@ -32,9 +32,10 @@ var WEATHER = {
 
     SLEET: [-50, -300],
     FOGGY: [-130, -300],
-    MOON: [-210, -300],
+    MOON: [-210, -310],
     WINDWRAIN: [-290, -300],
     WINDWCLOUDSANDRAIN: [-370, -300],
+	
 	CLOUDSANDWIND: [-50, -380]
 };
 
@@ -133,6 +134,13 @@ $('body').click(() => {
         });
     }
 	SELECTED = "";
+	$('#teamList').css({visibility: "hidden"});
+});
+
+$("#logo").click(function ( event ) {
+    $('#teamList').css({ visibility: 'visible' });
+    event.cancelBubble = true;
+    event.stopPropagation();
 });
 
 $('#mode_switch').click(() => {
@@ -169,6 +177,9 @@ function changeColorScheme() {
         $('#tooltip').css({
             backgroundColor: NIGHT_TOOLTIP_BACKGROUND
         });
+        $('#teamList').css({
+            backgroundColor: NIGHT_TOOLTIP_BACKGROUND
+        });
     }
     else {
         $('body').css({
@@ -185,6 +196,9 @@ function changeColorScheme() {
             backgroundSize: '36px'
         });
         $('#tooltip').css({
+            backgroundColor: DAY_TOOLTIP_BACKGROUND
+        });
+        $('#teamList').css({
             backgroundColor: DAY_TOOLTIP_BACKGROUND
         });
     }
