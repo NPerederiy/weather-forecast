@@ -142,6 +142,15 @@ $('body').click(() => {
 $("#logo").click(function ( event ) {
     $('#teamList').toggle();
 	$("#tooltip").css({visibility: "hidden"});
+	if(NIGHTMODE){
+        $('#' + SELECTED).css({
+            fill: NIGHT_REGION_NORMAL
+        });
+    } else {
+        $('#' + SELECTED).css({
+            fill: DAY_REGION_NORMAL
+        });
+    }
 	SELECTED = "";
 	
     event.cancelBubble = true;
