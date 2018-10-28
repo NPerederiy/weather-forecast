@@ -142,6 +142,7 @@ $('body').click(() => {
 $("#logo").click(function ( event ) {
     $('#teamList').toggle();
 	$("#tooltip").css({visibility: "hidden"});
+	SELECTED = "";
 	
     event.cancelBubble = true;
     event.stopPropagation();
