@@ -7,6 +7,10 @@
     font-style: normal;
 }
 
+* {
+    font-family: 'HP Simplified';
+}
+
 table {
     visibility: hidden;
     border-radius: 10%;

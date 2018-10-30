@@ -139,6 +139,40 @@ $('body').click(() => {
 	$('#teamList').css({display: "none"});
 });
 
+$('.search-region').click(function (event) {
+    $(".search-region").css({ fontWeight: "normal" });
+
+    if (NIGHTMODE) {
+        $(".area").css({
+            fill: NIGHT_REGION_NORMAL
+        });
+    } else {
+        $(".area").css({
+            fill: DAY_REGION_NORMAL
+        });
+    }
+
+    $(this).css({ fontWeight: "bold" });
+
+    var region = $(this).html().toString().trim();
+
+    var el = $(`a`);
+
+    for (i = 0; i < el.length; i++) {
+        if ($(el[i]).attr("xlink:title") == region) {
+            if (NIGHTMODE) {
+                $(el[i]).children().css({
+                    fill: NIGHT_REGION_HOVERED
+                });
+            } else {
+                $(el[i]).children().css({
+                    fill: DAY_REGION_HOVERED
+                });
+            }
+        }
+    }
+});
+
 $("#logo").click(function ( event ) {
     $('#teamList').toggle();
 	$("#tooltip").css({visibility: "hidden"});
@@ -194,6 +228,21 @@ function changeColorScheme() {
         $('#teamList').css({
             backgroundColor: NIGHT_TOOLTIP_BACKGROUND
         });
+        if(IS_BAR_OPENED) {
+            $('#search').css({
+                backgroundColor: NIGHT_TOOLTIP_BACKGROUND
+            });    
+        } else {
+            $('#search').css({
+                backgroundColor: NIGHT_BACKGROUND
+            });
+        }
+        /*$('.cross:after').css({
+            borderColor: NIGHT_REGION_STROKE
+        });
+        $('form').css({
+            borderColor: NIGHT_REGION_STROKE
+        });*/
     }
     else {
         $('body').css({
@@ -215,7 +264,25 @@ function changeColorScheme() {
         $('#teamList').css({
             backgroundColor: DAY_TOOLTIP_BACKGROUND
         });
+        if(IS_BAR_OPENED) {
+            $('#search').css({
+                backgroundColor: DAY_TOOLTIP_BACKGROUND
+            });    
+        } else {
+            $('#search').css({
+                backgroundColor: DAY_BACKGROUND
+            });
+        }
+        /*$('.cross').css({
+            borderColor: DAY_REGION_STROKE
+        });
+        $('form').css({
+            borderColor: DAY_REGION_STROKE
+        });*/
     }
+    $('.wrapper').css({
+        color: NIGHT_TEXT_COLOR
+    });
     changeBackgroundImage('mode_switch','src/icon-sun1.png','src/icon-moon1.png');
     changeBackgroundImage('logo','src/donut-logo.png','src/donut-logo3.png');
 }
