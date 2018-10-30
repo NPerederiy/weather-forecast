@@ -11,26 +11,6 @@ div#main {
     align-items: center;
 }
 
-div#search {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-    color: #ffffff;
-    padding-right: 10px;
-    border-radius: 0px 0px 10px 0px;
-}
-
-div#search ul {
-    list-style: none;
-    list-style-type: none;
-}
-
-div#search li::selection {
-    font-weight: bold;
-    font-size: 14px;
-}
-
 div#logo, div#team_name, div#mode_switch {
     position: absolute;
     opacity: 0.4;
@@ -100,19 +80,16 @@ path.area{
     stroke-width: 0.4px;
     fill: #0069cc;
 }
-
+/*
 #search-icon {
     width: 20px;
     height: 20px;
     padding-left: 5px;
     padding-top: 5px;
     padding-right: 5px;
-}
+}*/
 
+/*
 #keyword {
-    transform: translateY(-5px);
-}
-
-#regions {
-    display: none;
-}
+  transform: translateY(-5px);
+}*/

@@ -3,22 +3,19 @@
         <title>weather forecast</title>
         <meta charset="windows-1251" />
         <link rel="stylesheet" href="src/style.css">
+        <link rel="stylesheet" href="src/search.css">
         <link rel="stylesheet" href="src/table.css">
         <link rel="shortcut icon" href="src/favicon.png" type="image/png">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     </head>
     <body onload="onLoad()" onresize="scaleMap()">
         <div id="main">
-            <div id="search">
-                <img id="search-icon" src="src/glass.svg" onclick="showSearchBar();"/>
-                <input id="keyword" type="text" onchange="keywordChange(this)"/>
+            <div class="wrapper" id="search">
+                <form id="form">
+                    <input id="keyword" type="text" onkeyup="keywordChange(this)"/>
+                    <div class="cross"></div>
+                </form>
                 <ul id="regions">
-                    <li class="search-region">
-                        Sevastopol
-                    </li>
-                    <li class="search-region">
-                        Simferopol
-                    </li>
                     <li class="search-region">
                         Cherkasy
                     </li>
@@ -56,6 +53,9 @@
                         Luhansk
                     </li>
                     <li class="search-region">
+                        Lutsk
+                    </li>
+                    <li class="search-region">
                         Lviv
                     </li>
                     <li class="search-region">
@@ -71,6 +71,12 @@
                         Rivne
                     </li>
                     <li class="search-region">
+                        Sevastopol
+                    </li>
+                    <li class="search-region">
+                        Simferopol
+                    </li>
+                    <li class="search-region">
                         Sumy
                     </li>
                     <li class="search-region">
@@ -81,9 +87,6 @@
                     </li>
                     <li class="search-region">
                         Vinnytsia
-                    </li>
-                    <li class="search-region">
-                        Lutsk
                     </li>
                     <li class="search-region">
                         Zaporizhzhia
@@ -250,8 +253,9 @@
             </table>
             <div id="team_name">DoNuts</div>
         </div>
-        <script type="text/javascript" src="scripts/web-client.js"></script>
         <script type="text/javascript" src="scripts/map.js"></script>
+        <script type="text/javascript" src="scripts/search.js"></script>
         <script type="text/javascript" src="scripts/API.js"></script>
+        <script type="text/javascript" src="scripts/web-client.js"></script>
     </body>
 </html>

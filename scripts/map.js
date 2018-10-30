@@ -228,9 +228,21 @@ function changeColorScheme() {
         $('#teamList').css({
             backgroundColor: NIGHT_TOOLTIP_BACKGROUND
         });
-        $('#search').css({
-            backgroundColor: NIGHT_TOOLTIP_BACKGROUND
+        if(IS_BAR_OPENED) {
+            $('#search').css({
+                backgroundColor: NIGHT_TOOLTIP_BACKGROUND
+            });    
+        } else {
+            $('#search').css({
+                backgroundColor: NIGHT_BACKGROUND
+            });
+        }
+        /*$('.cross:after').css({
+            borderColor: NIGHT_REGION_STROKE
         });
+        $('form').css({
+            borderColor: NIGHT_REGION_STROKE
+        });*/
     }
     else {
         $('body').css({
@@ -252,10 +264,25 @@ function changeColorScheme() {
         $('#teamList').css({
             backgroundColor: DAY_TOOLTIP_BACKGROUND
         });
-        $('#search').css({
-            backgroundColor: DAY_TOOLTIP_BACKGROUND
+        if(IS_BAR_OPENED) {
+            $('#search').css({
+                backgroundColor: DAY_TOOLTIP_BACKGROUND
+            });    
+        } else {
+            $('#search').css({
+                backgroundColor: DAY_BACKGROUND
+            });
+        }
+        /*$('.cross').css({
+            borderColor: DAY_REGION_STROKE
         });
+        $('form').css({
+            borderColor: DAY_REGION_STROKE
+        });*/
     }
+    $('.wrapper').css({
+        color: NIGHT_TEXT_COLOR
+    });
     changeBackgroundImage('mode_switch','src/icon-sun1.png','src/icon-moon1.png');
     changeBackgroundImage('logo','src/donut-logo.png','src/donut-logo3.png');
 }
@@ -277,40 +304,6 @@ function scaleMap() {
     var scale = oH / 420;
     //console.log("scale = " + scale);
     $('#map').css({ transform: `scale(${scale})` });
-}
-
-function showSearchBar() {
-    $(".search-region").css({ fontWeight: "normal" });
-    if ($("#regions").css("display") == "none") {
-        $("#regions").slideDown();
-    }
-    else {
-        $("#regions").slideUp();
-        $("#keyword").val("");
-        $("li").css({ display: "list-item" });
-        if (NIGHTMODE) {
-            $(".area").css({
-                fill: NIGHT_REGION_NORMAL
-            });
-        } else {
-            $(".area").css({
-                fill: DAY_REGION_NORMAL
-            });
-        }
-    }
-}
-
-function keywordChange(sender) {
-    $("li").css({ display: "list-item" });
-    var key = $(sender).val().toLowerCase();
-
-    var el = $(`li`);
-
-    for (i = 0; i < el.length; i++) {
-        if ($(el[i]).html().toLowerCase().indexOf(key) == -1) {
-            $(el[i]).css({display: "none"});
-        }
-    }
 }
 
 function onLoad(){
