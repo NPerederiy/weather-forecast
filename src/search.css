@@ -191,3 +191,8 @@ ul#regions {
   left: 15px;
   display: none;
 }
+
+li.search-region:hover{
+	cursor:pointer;
+	color:#ddd;
+}
